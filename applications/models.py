@@ -66,7 +66,7 @@ class Drive(db.Model):
     deadline = db.Column(db.DateTime)
     name = db.Column(db.String(120))
     eligibility = db.Column(db.String(120))
-
+    
    
     status = db.Column(db.String(20), default="ongoing")
     approval_status = db.Column(db.String(20), default="Pending")
@@ -88,7 +88,6 @@ class Application(db.Model):
 
     date_applied = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # status = db.Column(db.String(50), default="Applied")
     status = db.Column(
     db.Enum("Applied", "Shortlisted", "Rejected", "Selected", name="application_status"),
     default="Applied",
