@@ -1,0 +1,57 @@
+*{
+    margin:0px;
+}
+#main{
+    border: 2px solid black;
+    margin-top: 10px;
+}
+#canvas{
+    border: 2px solid black;
+    width:60%;
+    height:680px;
+    margin:auto;
+}
+#form-body{
+    border: 1px solid grey;
+    width: 400px;
+    height: 600px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+    padding:10px;
+}
+.headings{
+    margin:10px;
+    padding: 4px;
+    margin-top: 10px;
+}
+.top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.overview-card {
+  background-color: #ffffff;
+  border: 0px solid #ddd;
+  border-radius: 10px;
+  padding: 20px 25px;
+  max-width: 800px;
+  margin: 20px auto;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.overview-card h4 {
+  color: #198754;              /* Bootstrap green tone */
+  margin-bottom: 12px;
+  font-weight: 600;
+  border-left: 4px solid #198754;
+  padding-left: 10px;
+}
+
+.overview-card p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+  text-align: justify;
+}
