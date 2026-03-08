@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Drive Details</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">{{ drive.name }}</h2>
+        
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h4 class="text-primary mb-3">{{ drive.job_title }}</h4>
+
+            <p class="text-muted">
+                {{ drive.job_description }}
+            </p>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <strong> Salary</strong>
+                    <p class="mb-0">{{ drive.salary }}</p>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <strong> Location</strong>
+                    <p class="mb-0">{{ drive.location }}</p>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <strong> Deadline</strong>
+                    <p class="mb-0">{{ drive.deadline.strftime('%d %b %Y') }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong> Eligibility</strong>
+                    <p class="mb-0">{{ drive.eligibility }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Status</strong>
+                    {% if drive.status == "ongoing" %}
+                        <span class="badge bg-success">Ongoing</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Completed</span>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    
+
+        <a href="{{ url_for('admin_dashboard', user_id=drive.company_id) }}"
+        class="btn btn-outline-secondary">
+        Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

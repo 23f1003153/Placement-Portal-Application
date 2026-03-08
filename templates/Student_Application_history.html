@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student application History</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+     crossorigin="anonymous">
+    
+</head>
+<body>
+    <div id="main">
+        
+        <div id="canvas">
+        
+        <div class="d-flex justify-content-between align-items-center mx-3 mt-2">
+            <h2>Student Application History</h2>
+            <a href="{{ url_for('student_dashboard') }}" 
+            class="btn btn-outline-primary px-4 py-2">
+                <i class="bi bi-arrow-left me-2 ">Back</i>
+            </a>
+        </div>
+        <div class="mx-3"><strong>Student Name :</strong> {{ student_profile.user.name }}</div>
+        <div class="mx-3"><strong>Department :</strong> {{ student_profile.department }}</div>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Drive Name</th>
+                    <th>Company Name</th>
+                    <th>Job Title</th>
+                    <th>Results</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in applications %}
+                <tr>
+                    <td>{{ app.drive.name }}</td>
+                    <td>{{ app.drive.company.company_name }}</td>
+                    <td>{{ app.drive.job_title }}</td>
+                    <td>
+                        <span class="
+                            {% if app.status == 'Selected' %}text-success
+                            {% elif app.status == 'Rejected' %}text-danger
+                            {% else %}text-warning
+                            {% endif %}
+                        ">
+                            {{ app.status }}
+                        </span>
+                    </td>
+                    <td>{{ app.remarks or "None" }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">No applications found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<form action="/search" method="GET">
+    <input type="text" name="q" placeholder="Search username...">
+    <button type="submit">Search</button>
+</form>
+
+@app.route("/search", methods=["GET"])
+def search():
+    query = request.args.get("q")
+    if query:
+        results = User.query.filter(User.username.ilike(f"%{query}%")).all()
+    else:
+        results = []
+    return render_template("search.html", users=results)
+
+
+{% if results %}
+
+<h2>Results</h2>
+
+<ul>
+    {% for user in results %}
+    <li>
+        <strong>{{ user.username }}</strong> - {{ user.email }}
+    </li>
+    {% endfor %}
+</ul>
+
+{% elif results is not none %}
+
+<p>No results found</p>
+{% endif %}
+</div>
+
