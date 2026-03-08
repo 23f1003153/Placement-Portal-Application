@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Update Closed Drive</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+        #canvas{
+            border:2px solid black;
+            width:60%;
+            height:800px;
+            margin:auto;
+        }
+        #form-body{
+            height:730px;
+            padding:20px;
+        }
+        </style>
+
+    </head>
+<body>
+
+    <div id="canvas">
+        <div id="form-body">
+
+        <h2>Update Closed Drive</h2>
+
+            <form action="{{ url_for('update_closed_drive', drive_id=drive.id) }}" method="POST">
+
+            <div class="mb-3">
+            <label class="form-label">Drive Name</label>
+            <input type="text" class="form-control" name="drivename" value="{{ drive.name }}" required>
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label">Job Title</label>
+            <input type="text" class="form-control" name="jobtitle" value="{{ drive.job_title }}" required>
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label">Job Description</label>
+            <textarea class="form-control" name="description">{{ drive.job_description }}</textarea>
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label">Salary</label>
+            <input type="number" class="form-control" name="salary" value="{{ drive.salary }}">
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label">Eligibility</label>
+            <input type="text" class="form-control" name="eligibility" value="{{ drive.eligibility }}">
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input type="text" class="form-control" name="location" value="{{ drive.location }}">
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label">Application Deadline</label>
+            <input type="date" class="form-control" name="deadline"
+            value="{{ drive.deadline.strftime('%Y-%m-%d') if drive.deadline else '' }}">
+            </div>
+
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="{{ url_for('company_dashboard') }}" class="btn btn-secondary">
+            Cancel
+            </a>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>
