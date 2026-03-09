@@ -7,7 +7,7 @@ def create_app():
     app.secret_key = "your_super_secret_key_123"
 
     app.debug=True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventory.sqlite3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///placementportal.sqlite3'
     db.init_app(app)
     app.app_context().push()
     return app
