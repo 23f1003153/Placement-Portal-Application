@@ -18,7 +18,7 @@ def student_signup():
         password = request.form.get("pwd")
         name = request.form.get("fname")
         department = request.form.get("department")
-
+    
         if User.query.filter((User.username == username) | (User.email == email)).first():
             flash("User already exists", "error")
             return redirect(url_for("student_signup"))
@@ -136,6 +136,11 @@ def admin_dashboard():
         is_approved=True,
         is_blacklisted=False
     ).all()
+    total_companies = User.query.filter_by(role="Company").count()
+    total_students = User.query.filter_by(role="Student").count()
+    total_drives = Drive.query.filter(Drive.approval_status !="Rejected").count()
+    total_applications = Application.query.count()
+
     applications = Application.query.join(Drive).filter(
     Drive.company_id == session.get("user_id")
     ).all()
@@ -147,10 +152,14 @@ def admin_dashboard():
         "admin_dashboard.html",
         pending_companies=pending_companies,
         companies=approved_companies,
+        total_companies=total_companies,
+        total_students=total_students,
+        total_drives=total_drives,
         students=students,
         ongoing_drives=drives,
         applications=applications,
-        pending_drives=pending_drives
+        pending_drives=pending_drives,
+        total_application=total_applications
     )
 
 
@@ -410,7 +419,7 @@ def update_closed_drive(drive_id):
         drive.salary = request.form.get("salary")
         drive.eligibility = request.form.get("eligibility")
         drive.location = request.form.get("location")
-
+        drive.status = "ongoing"
         deadline_str = request.form.get("deadline")
 
         if deadline_str:
@@ -599,8 +608,8 @@ def company_details(user_id):
 def drive_details(drive_id):
 
     drive = Drive.query.get_or_404(drive_id)
-
-    return render_template('drive_details.html', drive=drive)
+    company = CompanyProfile.query.get(drive.company_id)
+    return render_template('drive_details.html', drive=drive, company=company)
 
 
 @app.route("/apply/<int:drive_id>", methods=["POST"])

@@ -22,7 +22,13 @@
             <h5 class="mb-0">Update Student Application</h5>
             </div>
             <div>
-                <h6>{{ drive.job_title }}</h6>
+                <h6> <strong>Drive Name :</strong> {{ drive.name }}</h6>
+            </div>
+            <div>
+                <h6> <strong>Job Title :</strong> {{ drive.job_title }}</h6>
+            </div>
+            <div>
+                <h6> <strong>Job description :</strong> {{ drive.job_description }}</h6>
             </div>
             
             <div id="form-body">
@@ -58,12 +64,14 @@
             </div>
             </div>
                
+            <div class="d-flex justify-content-end mb-3 mt-3">
+            <a href="{{ url_for('company_dashboard', user_id=drive.company_id) }}"
+                class="btn btn-outline-secondary">
+                Back to Dashboard
+            </a>
             </div>
-            <div class="card-footer text-end mx-2">
-                <button type="submit" class="btn btn-sm btn-outline-success">Save</button>
-            </div>
-
         </div>
+    </div>
     </div>
 </body>
 </html>

@@ -36,7 +36,44 @@
                     
                 </div>
             </nav>
+            <div class="row text-center my-4">
 
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5>Total Students</h5>
+                        <h2 class="text-primary">{{ total_students }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5>Total Companies</h5>
+                        <h2 class="text-success">{{ total_companies }}</h2>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5>Total Drives</h5>
+                        <h2 class="text-danger">{{ total_drives }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5>Total Applications</h5>
+                        <h2 class="text-secondary">{{ total_application }}</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- </div> -->
 
             <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -130,6 +167,11 @@
                 <tr>
                 <td>{{ p.name }}</td>
                 <td class="text-center">
+                        <a href="{{ url_for('adrive_details', drive_id=p.id) }}" class="btn btn-sm btn-outline-primary">View</a> 
+                        
+                </td>
+                <td class="text-center">
+                    
 
                     <form action="{{ url_for('approve_drive', drive_id=p.id) }}" method="POST" style="display:inline;">
                     <button type="submit" class="btn btn-sm btn-outline-success">

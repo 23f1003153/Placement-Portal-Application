@@ -58,6 +58,19 @@
                         <span class="badge bg-secondary">Completed</span>
                     {% endif %}
                 </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Approval Status from Admin</strong><br>
+
+                    {% if drive.approval_status == "Pending" %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+
+                    {% elif drive.approval_status == "Approved" %}
+                        <span class="badge bg-success">Approved</span>
+
+                    {% else %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                </div>
 
             </div>
 
